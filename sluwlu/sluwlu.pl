@@ -1,53 +1,10 @@
 #!/usr/bin/perl
 #
-# VERSION: $Id: sluwlu.pl,v 1.2 2007-02-11 10:22:38 atterdag Exp $
-#
-# AUTHOR: Valdemar Lemche <valdemar@lemche.net>
-#
-# PURPOSE: sluwlu.pl (Sync-Local-Users-With-LDAP-Users) will compare a system
-# local users and groups with the users and groups in a LDAP DIT.
-#
-# It will then generate a passwd.new and group.new with the LDAP UIDs, GIDs
-# etc, and if a local-only user or group is conflicting with a LDAP user and
-# group, it will find a new unused UID or GID for the user or group.
-#
-# Finally it will generate some scripts that modifies the ownership of the
-# files belonging to the UIDs and GIDs of changed users and groups.
-#
-# E.g. if the local user 'jdoe' had his UID changed from 1002 to 1003, then
-# for instance all his files under /home/jdoe would belong to someone else
-# after you have exchanged /etc/passwd with the new passwd. But the chown.sh
-# script contains a 'chown' command for each file, that 'belonged' to the old
-# UID of jdoe. And running the chown.sh script will the change back ownership
-# to jdoe of all the files that belonged to the old UID of jdoe.
-#
-# USAGE: Send the system to runlevel 1. Make sure all daemons are dead and only
-# the neccessary programs are running.
-# Start up your network interface so that you can communicate with your LDAP
-# server. Edit sluwlu.cfg so it fits your enviroment and run sluwlu.pl. Then
-# verify that passwd.new, group.new, chown.sh and chgrp.sh contains the
-# information that you would expect. And finally run:
-#
-# 	#./run.sh.
-#
-# Thats it! Now restart your box.
-#
-# CHANGELOG:
-# sluwlu.pl (0.1-alpha) unstable; urgency=high
-#
-#   * Initial release
-#
-#  -- Valdemar Lemche <valdemar@lemche.net>  wed, 24 Jan 2007 07:55 +0100
+# VERSION: $Id: sluwlu.pl,v 1.3 2007-02-11 10:57:05 atterdag Exp $
 #
 # Get the latest version from http://valdemar.lemche.net
 #
-# sluwlu.pl is Copyright (C) 2006 Valdemar Lemche.  All rights reserved.
-# This script is free software; you can redistribute it and/or modify it
-# under the same terms as Perl itself.
-#
-# This script is released TOTALLY AS-IS. If it will have any negative impact
-# on your systems, make you sleepless at night or even cause World War III;
-# I will claim no responsibility! You may use this script at you OWN risk.
+# COPYRIGHT: See the copyright file distributed with this script.
 #
 
 # Define modules to use
