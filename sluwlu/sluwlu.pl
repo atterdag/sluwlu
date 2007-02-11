@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# VERSION: $Id: sluwlu.pl,v 1.1 2007-01-24 09:07:23 atterdag Exp $
+# VERSION: $Id: sluwlu.pl,v 1.2 2007-02-11 10:22:38 atterdag Exp $
 #
 # AUTHOR: Valdemar Lemche <valdemar@lemche.net>
 #
@@ -24,9 +24,13 @@
 # USAGE: Send the system to runlevel 1. Make sure all daemons are dead and only
 # the neccessary programs are running.
 # Start up your network interface so that you can communicate with your LDAP
-# server. Run sluwlu.pl, then verify that passwd.new, group.new, chown.sh and
-# chgrp.sh contains the information that you would expect. And finally run
-# ./run.sh. Thats it and now restart your box.
+# server. Edit sluwlu.cfg so it fits your enviroment and run sluwlu.pl. Then
+# verify that passwd.new, group.new, chown.sh and chgrp.sh contains the
+# information that you would expect. And finally run:
+#
+# 	#./run.sh.
+#
+# Thats it! Now restart your box.
 #
 # CHANGELOG:
 # sluwlu.pl (0.1-alpha) unstable; urgency=high
