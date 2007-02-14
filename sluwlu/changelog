@@ -1,3 +1,12 @@
+sluwlu.pl (0.2-beta) stable; urgency=high
+
+   * Fixed bugs with chown.sh and chgrp.sh scripts
+   * Backup of /etc/passwd and /etc/group is now done to in working directory.
+   * Fixed bug in run.sh script, where script was copying not existing files to
+     /etc/passwd and /etc/group, creating empty /etc/passwd and /etc/group.
+
+  -- Valdemar Lemche <valdemar@lemche.net>  wed, 14 Feb 2007 18:47 +0100
+
 sluwlu.pl (0.1-alpha) unstable; urgency=high
 
    * Initial release

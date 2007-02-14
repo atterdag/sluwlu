@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# VERSION: $Id: sluwlu.pl,v 1.3 2007-02-11 10:57:05 atterdag Exp $
+# VERSION: $Id: sluwlu.pl,v 1.4 2007-02-14 17:54:06 atterdag Exp $
 #
 # Get the latest version from http://valdemar.lemche.net
 #
@@ -241,7 +241,7 @@ sub chown_files {
         if ( $ids{'users'}->{$user}->{'status'} eq 'changed' ) {
             for my $file ( @{ $ids{'users'}->{$user}->{'files'} } ) {
                 chomp($file);
-                print CHOWN_FILE 'chown' . $user . ' ' . $file;
+                print CHOWN_FILE 'chown ' . $user . ' ' . $file . "\n";
             }
         }
     }
@@ -255,7 +255,8 @@ sub chgrp_files {
     for my $group ( keys( %{ $ids{'groups'} } ) ) {
         if ( $ids{'groups'}->{$group}->{'status'} eq 'changed' ) {
             for my $file ( @{ $ids{'groups'}->{$group}->{'files'} } ) {
-                print CHGRP_FILE 'chgrp ' . $group . ' ' . $file;
+            	chomp($file);
+                print CHGRP_FILE 'chgrp ' . $group . ' ' . $file . "\n";
             }
         }
     }
@@ -468,10 +469,10 @@ sub run_script {
     open( RUN_SCRIPT, ">run.sh" );
     print RUN_SCRIPT <<EOF;
 #!/bin/sh
-mv /etc/passwd /etc/passwd.old
-mv /etc/group /etc/group.old
-cp passwd /etc/passwd
-cp group /etc/group
+mv /etc/passwd passwd.old
+mv /etc/group group.old
+cp passwd.new /etc/passwd
+cp group.new /etc/group
 ./chown.sh
 ./chgrp.sh
 EOF
@@ -613,7 +614,6 @@ sub read_configuration_file {
         # if parameter is unset
         if ( $configuration{$required_parameter} eq "" ) {
 
-            # then die
             die $required_parameter . " haven't been defined -- exitting!\n";
         }
     }
